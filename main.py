@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, url_for, redirect, send_file, abort
-from loginModel import UploadForm
+from flask import Flask, render_template, request, redirect, url_for, send_file, abort
+from loginModel import UploadForm, ReceiveForm
 from google.cloud import datastore
 from google.cloud import storage
 # from google.cloud.storage import Blob
@@ -17,11 +17,17 @@ app.config['SECRET_KEY'] = 'a83c51c8b7fc804eb395d7c1d753fa28'
 # Index
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    form = UploadForm()
+    global receiveForm
+    receiveForm = ReceiveForm()
 
     if request.method == 'GET':
-        return render_template('index.html', form=form, post=False)
+        return render_template('index.html', receiveForm = receiveForm, post=False)
     elif request.method == 'POST':
+
+        # POST form receive form
+        if receiveForm.submit.data:
+            fileId = receiveForm.fileID.data
+            return redirect(url_for('receiveFileID', fileID=fileId))
 
         # https://cloud.google.com/appengine/docs/flexible/python/using-cloud-storage?hl=zh-tw
         uploaded_file = request.files.get('file')
@@ -30,6 +36,7 @@ def index():
 
         # Generate md5 for file
         fileMD5 = hashlib.md5(uploaded_file.read()).hexdigest()
+        fileCode = fileMD5[0:6]
         uploaded_file.seek(0)
 
         # Write file to cloud storage and make it public.
@@ -41,32 +48,35 @@ def index():
             content_type=uploaded_file.content_type
         )
         blob.make_public()
-
-        # Get file's public url and MD5
-        filePublicUrl = blob.public_url
-        fileCode = fileMD5[0:6]
-        # fileName = request.files['file'].name
-        print(filePublicUrl)
-        print(fileCode)
-        # print(fileName)
     
-        # Write file's public url and MD5 to cloud datastore.
-        # @link https://googleapis.dev/python/datastore/latest/client.html
+        # Write file detail to cloud datastore.
         client = datastore.Client()
         task_key = client.key('fileDetails')
         entity = datastore.Entity(key=task_key)
         entity['fileCode'] = fileCode
-        entity['filePublicUrl'] = filePublicUrl
+        entity['fileFullMD5'] = fileMD5
+        entity['filePublicUrl'] = blob.public_url
         # entity['fileName'] = fileName
         client.put(entity)
 
         # The public URL can be used to directly access the uploaded file via HTTP.
-        return render_template('index.html', form=form, post=True, fileCode=fileCode)
+        return render_template('index.html', receiveForm=receiveForm, post=True, fileCode=fileCode)
+
+
+'''Check Duplicate exists or not
+
+@link https://googleapis.dev/python/datastore/latest/client.html
+'''
+def isFileDuplicate(fileFullMD5):
+    return True
 
 
 @app.route('/receive/<fileID>', methods=['GET', 'POST'])
-def receive(fileID):
-    form = UploadForm()
+def receiveFileID(fileID):
+    # fileIDs = request.args.get('fileID')
+    # print(fileIDs)
+    # return "yyy"
+    print(fileID)
 
     client = datastore.Client()
     query = client.query(kind='fileDetails')
@@ -75,7 +85,7 @@ def receive(fileID):
     resultLists = list(result)
 
     if len(resultLists) == 0:
-        # return render_template('index.html', form=form, post=False)
+        # return render_template('index.html', post=False)
         return 'No such file.', 400
     else:
         # client = storage.Client()
@@ -89,7 +99,7 @@ def receive(fileID):
         for key, value in resultLists[0].items():
             if key == 'filePublicUrl':
                 filePublicUrls = value
-        return render_template('receive.html', form=form, post=True, filePublicUrl=filePublicUrls)
+        return render_template('receive.html', post=True, filePublicUrl=filePublicUrls)
 
 
 if __name__ == '__main__':

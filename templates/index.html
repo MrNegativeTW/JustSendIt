@@ -23,7 +23,6 @@
                 <span class="title3 textLeft">Send</span>
                 <form method="POST" action="" enctype="multipart/form-data">
                     <input type="file" name="file">
-                    <!-- <input type="submit"> -->
                     <button class="btn btn-get whiteText" type="submit" style="width: 100%;">Upload</button>
                 </form>
 
@@ -38,11 +37,14 @@
                 <hr>
 
                 <span class="title3 textLeft">Receive</span>
-                <form method="POST" action="/receive/" style="padding-top: 8px;">
+                <form method="POST" action="" style="padding-top: 8px;">
                     <div class="form-group input-group">
-                        <input type="text" class="form-control" placeholder="File ID" id="fileID">
+                        {{ receiveForm.hidden_tag() }}
+                        {{ receiveForm.fileID(class="form-control") }}
+                        <!-- <input type="text" class="form-control" placeholder="File ID" id="fileID"> -->
                         <div class="input-group-append">
-                          <button class="btn btn-get whiteText" type="submit">Get</button>
+                            {{ receiveForm.submit(class="btn btn-get whiteText") }}
+                          <!-- <button class="btn btn-get whiteText" type="submit">Get</button> -->
                         </div>
                       </div>
                 </form>
