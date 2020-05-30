@@ -1,0 +1,244 @@
+/* For cloud compute quick demo, fuck. */
+/* If you can see these msg, my telegram: @MrTrevorWu */
+.whiteText {
+    color: #ffffff;
+}
+
+.formBorder {
+  /* border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: rgba(255, 255, 255, 0.6); */
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 24px 0px, rgba(0, 0, 0, 0.25) 0px 44px 32px 0px;
+  background-color: rgb(234, 231, 225);
+  width: 350px;
+  border-radius: 8px;
+  transition: all .2s ease-in-out;
+}
+
+.formPadding {
+  padding: 20px;
+}
+
+.WidgetContainer{
+  display: block;
+}
+
+.Widget {
+  margin-bottom: 80px;
+}
+
+.TransferBox {
+  z-index: 30;
+  position: absolute;
+  top: 212px;
+  left: 80px;
+}
+
+.Send {
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 24px 0px, rgba(0, 0, 0, 0.25) 0px 44px 32px 0px;
+  background-color: rgb(234, 231, 225);
+  margin-bottom: 16px;
+  width: 300px;
+  border-radius: 4px;
+  transition: all .2s ease-in-out;
+}
+
+.title3 {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+}
+
+.btn-get,
+.btn-get:hover,
+.btn-get:active,
+.btn-get:visited,
+.btn-get:focus {
+    background-color: rgb(255, 15, 61);
+    border-color: rgb(255, 15, 61);
+}
+
+
+/* CSS Document */
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+.global-font-family{
+	font-family: 'Noto Sans TC', sans-serif;
+}
+Nobody {
+	padding-top: 50px;
+}
+.wowTop{
+	padding-top: 16px;
+}
+.wowTop10{
+	padding-top: 10px;
+}
+.wowTop5{
+	padding-top: 5px;
+}
+.wowBottom{
+	padding-bottom: 20px;
+}
+.global-margin-top-16{
+	margin-top: 16px;
+}
+.sheet-padding{
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+.sheet-padding-top{
+	padding-top: 60px;
+}
+.sheet-padding-bottom{
+	padding-bottom: 60px;
+}
+.subtitle{
+  color: #828282;
+  font-weight: lighter;
+}
+a {
+  color:inherit;
+  text-decoration: none;
+ }
+.bigbig {
+	position: relative;
+	padding-bottom: 5px;
+	transition: 0.5s ease;
+}
+.bigbig:hover {
+	transform: scale(1.05, 1.05);
+	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color:inherit;
+  text-decoration: none;
+}
+.jumbotron-padding{
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.jumbotron-title{
+  font-size: 42px;
+}
+
+
+
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
+html{
+	height: 100% !important;
+}
+
+body{
+    height: 100%;
+}
+.content{
+	flex: 1 0 auto;
+	-webkit-flex: 1 0 auto;
+	min-height: 200px;
+}
+#myFooter{
+	flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+}
+
+/*Header-Nightsky*/
+.header-nightsky {
+    /* background: url("https://fvu3mq.bn.files.1drv.com/y4mEIso5ludtoO5xhCKPLDg4pV8YTBq2LeUUeyBco-LdI-eRQJFvGiIrY7q4waIyTPRX-4YFPxqpji0BKY_-6ksTyGI0hYCsRL3k4OlSrNh1kmZLAZrTft5kSOEtVFL-kuyaitD_d_SrUE7izYmB5zaFp87RkaHfvLpvP8DoHKSXkgbMnr9k3dr8njQwJyMczHX__rfVIIOkpIvyXofq4BexA") no-repeat; */
+    /* background: url("https://source.unsplash.com/random/1920x1080") no-repeat; */
+    background: url("https://picsum.photos/1920/1080") no-repeat;
+	  height: 100%;
+	  background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.header-nightsky .hero {
+    /* text-align: center; */
+	  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.header-nightsky .hero h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 16px;
+}
+.header-nightsky .hero p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    max-width: 660px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+
+/*-------------------
+RGB
+-------------------*/
+.colorLoop {
+	animation: bg-animation 7s infinite;
+}
+
+@-webkit-keyframes bg-animation {
+  0% {
+    background-color: #FF4136;
+  }
+  15% {
+    background-color: #FFDC00;
+  }
+  30% {
+    background-color: #2ECC40;
+  }
+  45% {
+    background-color: #0074D9;
+  }
+  60% {
+    background-color: #B10DC9;
+  }
+  75% {
+    background-color: #F012BE;
+  }
+  90% {
+    background-color: #001f3f;
+  }
+  100% {
+    background-color: #FF4136;
+  }
+}
+@keyframes bg-animation {
+	0% {
+    background-color: #001f3f;
+  }
+	10% {
+    background-color: #0074D9;
+  }
+	20% {
+    background-color: #7FDBFF;
+  }
+	30% {
+    background-color: #39CCCC;
+  }
+	40% {
+    background-color: #3D9970;
+  }
+	50% {
+    background-color: #2ECC40;
+  }
+	60% {
+    background-color: #01FF70;
+  }
+	70% {
+    background-color: #FFDC00;
+  }
+	80% {
+    background-color: #FF851B;
+  }
+	90% {
+    background-color: #FF4136;
+  }
+	100% {
+    background-color: #001f3f;
+  }
+}

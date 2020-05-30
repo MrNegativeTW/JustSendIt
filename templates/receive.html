@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block Content %}
+<div class="header-nightsky">
+    <div class="hero">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm formBorder formPadding">
+                <span class="title3 textLeft">There you go.</span><br>
+
+                
+                {% if post %}
+                <div style="padding-top: 8px;">
+                    <a class="btn btn-get whiteText" href="{{ filePublicUrl }}" style="padding-top: 8px;">Get File</a>
+                </div>
+                {% endif %}
+                
+            </div> <!-- ./col-sm -->
+
+        </div> <!-- ./row -->
+    </div> <!-- ./container -->
+    </div>
+</div>
+{% endblock Content %}

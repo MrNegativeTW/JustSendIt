@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!--網站圖標-->
+	<link rel="icon" href="{{url_for('static', filename='image/navIcon.png')}}" />
+ 	{% if title %}
+		<title>{{ title }}</title>
+	{% else %}
+		<title>Python Works</title>
+	{% endif %}
+    <meta name="URL" content="" />
+	<!--搜尋引擎-->
+	<meta name="robots" content="index,follow" />
+	<meta name="googlebot" content="index,follow" />
+	<!--網站分級-->
+	<meta name="rating" content="General" />
+	<!--Basic Info-->
+	<meta name="subject" content="各種 Python 小作品" />
+	<meta name="description" content="我用 Python 寫了一些小東西，都放在這邊了" />
+   	<mata name="keywords" content="Python" />
+    <meta name="author" content="Trevor Wu" />
+    <meta name="copyright" content="2020 ©" />
+	<!--Facebook Open Graph-->
+	<meta property="og:url" content="https://pythonworks.herokuapp.com" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="各種 Python 小作品" />
+	<meta property="og:description"  content="我用 Python 寫了一些小東西，都放在這邊了" />
+	<meta property="og:image" content="https://imgur.com/6ZoOgKk" />
+	<!--CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+  	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+{% block Content %}
+{% endblock Content %}
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(Document).ready(function(){
+$("#place_holder").addClass("flash");
+});
+</script>
+</body>
+</html>

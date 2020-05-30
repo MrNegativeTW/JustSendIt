@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block Content %}
+
+<!-- <div class="WidgetContainer">
+    <div class="Widget TransferBox" style="top: 212px;transition: top 0.2s ease-in-out 0s;">
+        <div class="Send">
+            <span class="title3">Send</span>
+            <hr>
+            <span class="title3">Receive</span>
+        </div>
+
+    </div>
+</div> -->
+
+<div class="header-nightsky">
+    <div class="hero">
+        
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm formBorder formPadding">
+                <span class="title3 textLeft">Send</span>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    <!-- <input type="submit"> -->
+                    <button class="btn btn-get whiteText" type="submit" style="width: 100%;">Upload</button>
+                </form>
+
+                {% if post %}
+
+                <div>
+                    Your file ID is <span class="title3 textLeft">{{ fileCode }}</span>
+                </div>
+
+                {% endif %}
+
+                <hr>
+
+                <span class="title3 textLeft">Receive</span>
+                <form method="POST" action="/receive/" style="padding-top: 8px;">
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" placeholder="File ID" id="fileID">
+                        <div class="input-group-append">
+                          <button class="btn btn-get whiteText" type="submit">Get</button>
+                        </div>
+                      </div>
+                </form>
+
+            </div> <!-- ./col-sm -->
+
+        </div> <!-- ./row -->
+    </div> <!-- ./container -->
+    </div>
+</div>
+{% endblock Content %}
