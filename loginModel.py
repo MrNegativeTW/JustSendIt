@@ -5,3 +5,7 @@ from wtforms.validators import DataRequired, InputRequired, Length, NumberRange,
 
 class UploadForm(FlaskForm):
 	submit = SubmitField('LET ME UP')
+
+class ReceiveForm(FlaskForm):
+	fileID = StringField('')
+	submit = SubmitField('Get')
