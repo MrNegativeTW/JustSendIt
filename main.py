@@ -41,7 +41,7 @@ def index():
 
         # Write file to cloud storage and make it public.
         client = storage.Client()
-        bucket = client.get_bucket("cloudcomputing-270803.appspot.com")
+        bucket = client.get_bucket("justsendit")
         blob = bucket.blob(uploaded_file.filename)
         blob.upload_from_string(
             uploaded_file.read(),
@@ -73,11 +73,6 @@ def isFileDuplicate(fileFullMD5):
 
 @app.route('/receive/<fileID>', methods=['GET', 'POST'])
 def receiveFileID(fileID):
-    # fileIDs = request.args.get('fileID')
-    # print(fileIDs)
-    # return "yyy"
-    print(fileID)
-
     client = datastore.Client()
     query = client.query(kind='fileDetails')
     query = query.add_filter('fileCode', '=', fileID)

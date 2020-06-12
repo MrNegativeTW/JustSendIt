@@ -19,7 +19,7 @@
             <img src="{{url_for('static', filename='image/navIcon.png')}}" width="30" height="30" alt="">
             Just Send It !
         </a>
-        <a target="_blank" href="https://github.com/MrNegativeTW/JustSendIt" class="btn btn-dark form-inline" >
+        <a target="_blank" href="https://github.com/MrNegativeTW/JustSendIt" class="btn btn-outline-light form-inline" >
             <i class="fab fa-github"> GitHub</i>
         </a>
     </nav>
@@ -32,13 +32,13 @@
             <div class="col-sm formBorder formPadding">
                 <span class="title3 textLeft">Send</span>
                 <form method="POST" action="" enctype="multipart/form-data">
-                    <input type="file" name="file">
+                    <input type="file" name="file" style="padding-top: 8px; padding-bottom: 8px;">
                     <button class="btn btn-get whiteText" type="submit" style="width: 100%;">Upload</button>
                 </form>
 
                 {% if post %}
 
-                <div>
+                <div style="padding-top: 4px;">
                     Your file ID is <span class="title3 textLeft">{{ fileCode }}</span>
                 </div>
 
