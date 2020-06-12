@@ -33,4 +33,9 @@ Just like SendAnyWhere but build on the GCP with Python and flask.
 - **NO ADS**
 
 ## License
+[MrNegativeTW/JustSendIt](https://github.com/MrNegativeTW/JustSendIt) is licensed under the [MIT License](https://github.com/MrNegativeTW/JustSendIt/blob/master/LICENSE)
+
+<br>
+<img src="https://i.imgur.com/MSe2neB.png" width="64" height="64"><br>
+
 Icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [flaticon](https://www.flaticon.com/free-icon/paper-plane_941565?term=send&page=1&position=25)
