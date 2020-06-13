@@ -24,7 +24,7 @@ def index():
         return render_template('index.html', receiveForm = receiveForm, post=False)
     elif request.method == 'POST':
 
-        # POST form receive form
+        # POST from receive form
         if receiveForm.submit.data:
             fileId = receiveForm.fileID.data
             return redirect(url_for('receiveFileID', fileID=fileId))
@@ -56,7 +56,7 @@ def index():
         entity['fileCode'] = fileCode
         entity['fileFullMD5'] = fileMD5
         entity['filePublicUrl'] = blob.public_url
-        # entity['fileName'] = fileName
+        entity['fileName'] = uploaded_file.filename
         client.put(entity)
 
         # The public URL can be used to directly access the uploaded file via HTTP.
