@@ -1,13 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file, abort
-from loginModel import UploadForm, ReceiveForm
+from formModel import UploadForm, ReceiveForm
 from google.cloud import datastore
 from google.cloud import storage
-# from google.cloud.storage import Blob
 import hashlib
 import tempfile
-
-# Cloud Storage Client Libraries
-# https://cloud.google.com/storage/docs/reference/libraries#client-libraries-usage-python
+import FileDetails # Data Class
 
 # App Start
 app = Flask(__name__)
@@ -26,10 +23,12 @@ def index():
     elif request.method == 'POST':
         # POST from receive form
         if receiveForm.submit.data:
-            fileId = receiveForm.fileID.data
-            return redirect(url_for('receiveFileID', fileID=fileId))
+            if receiveForm.validate_on_submit():
+                fileId = receiveForm.fileID.data
+                return redirect(url_for('receiveFileID', fileID=fileId))
+            return render_template('index.html', receiveForm=receiveForm, post=False)
 
-        # https://cloud.google.com/appengine/docs/flexible/python/using-cloud-storage?hl=zh-tw
+        # Get uploaded file.
         uploaded_file = request.files.get('file')
         if not uploaded_file:
             return redirect(url_for('index'))
@@ -70,10 +69,7 @@ def index():
             fileCode=fileCode)
 
 
-'''Check Duplicate exists or not
-
-@link https://googleapis.dev/python/datastore/latest/client.html
-'''
+'''Check duplicate file exists or not'''
 def isFileDuplicate(fileFullMD5):
     client = datastore.Client()
     query = client.query(kind='fileDetails')
@@ -121,4 +117,3 @@ if __name__ == '__main__':
     # Engine, a webserver process such as Gunicorn will serve the app. This
     # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True)
-    # app.run(debug=True)
