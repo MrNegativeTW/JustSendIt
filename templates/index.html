@@ -31,17 +31,16 @@
 
             <div class="col-sm formBorder formPadding">
                 <span class="title3 textLeft">Send</span>
+
                 <form method="POST" action="" enctype="multipart/form-data">
                     <input type="file" name="file" style="padding-top: 8px; padding-bottom: 8px;">
                     <button class="btn btn-get whiteText" type="submit" style="width: 100%;">Upload</button>
                 </form>
 
                 {% if post %}
-
                 <div style="padding-top: 4px;">
                     Your file ID is <span class="title3 textLeft">{{ fileCode }}</span>
                 </div>
-
                 {% endif %}
 
                 <hr>
@@ -51,13 +50,15 @@
                     <div class="form-group input-group">
                         {{ receiveForm.hidden_tag() }}
                         {{ receiveForm.fileID(class="form-control") }}
-                        <!-- <input type="text" class="form-control" placeholder="File ID" id="fileID"> -->
                         <div class="input-group-append">
                             {{ receiveForm.submit(class="btn btn-get whiteText") }}
-                          <!-- <button class="btn btn-get whiteText" type="submit">Get</button> -->
                         </div>
                       </div>
+                    {% for error in receiveForm.fileID.errors %}
+                    <span class="error text-danger">{{ error }}</span>
+                    {% endfor %}
                 </form>
+                
 
             </div> <!-- ./col-sm -->
 

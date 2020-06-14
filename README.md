@@ -17,6 +17,7 @@ Just like SendAnyWhere but build on the GCP with Python and flask.
   <a href="#Preview">Preview</a> •
   <a href="#key-features">Key Features</a> •
   <a href="https://github.com/MrNegativeTW/JustSendIt/wiki/Installation">Installation</a> •
+  <a href="https://github.com/MrNegativeTW/JustSendIt/wiki/Reference">Reference</a> •
   <a href="#license">License</a>
 </p>
 
@@ -27,10 +28,10 @@ Just like SendAnyWhere but build on the GCP with Python and flask.
 
 ## Key Features
 - Random Background
-- Upload file anywhere
-- Download file anywhere
+- Upload / Download file anywhere
 - Clean UI
 - **NO ADS**
+- Basic Validation (Duplicate  File / File ID)
 
 ## License
 [MrNegativeTW/JustSendIt](https://github.com/MrNegativeTW/JustSendIt) is licensed under the [MIT License](https://github.com/MrNegativeTW/JustSendIt/blob/master/LICENSE)
