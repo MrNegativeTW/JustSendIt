@@ -1,31 +1,27 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file, abort
-from formModel import UploadForm, ReceiveForm
+from flask import Blueprint, render_template, session, redirect, url_for, \
+    request, flash, g, jsonify, abort, send_file
+from project.model.formModel import UploadForm, ReceiveForm
 from google.cloud import datastore
 from google.cloud import storage
 import hashlib
 import tempfile
-import FileDetails # Data Class
 
-# App Start
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'a83c51c8b7fc804eb395d7c1d753fa28'
+mod = Blueprint('general', __name__)
 
-
-# Index
-@app.route('/', methods=['GET', 'POST'])
+@mod.route('/', methods=['GET', 'POST'])
 def index():
     global receiveForm
     receiveForm = ReceiveForm()
 
     if request.method == 'GET':
-        return render_template('index.html', receiveForm = receiveForm, post=False)
+        return render_template('index.html', receiveForm=receiveForm, post=False)
 
     elif request.method == 'POST':
         # POST from receive form
         if receiveForm.submit.data:
             if receiveForm.validate_on_submit():
                 fileId = receiveForm.fileID.data
-                return redirect(url_for('receiveFileID', fileID=fileId))
+                return redirect(url_for('receive.receiveFileID', fileID=fileId))
             return render_template('index.html', receiveForm=receiveForm, post=False)
 
         # Get uploaded file.
@@ -49,7 +45,7 @@ def index():
             content_type=uploaded_file.content_type
         )
         blob.make_public()
-    
+
         # Write file detail to cloud datastore.
         if isFileDuplicate(fileMD5) == False:
             client = datastore.Client()
@@ -63,9 +59,9 @@ def index():
 
         # The public URL can be used to directly access the uploaded file via HTTP.
         return render_template(
-            'index.html', 
-            receiveForm=receiveForm, 
-            post=True, 
+            'index.html',
+            receiveForm=receiveForm,
+            post=True,
             fileCode=fileCode)
 
 
@@ -80,40 +76,3 @@ def isFileDuplicate(fileFullMD5):
         return False
     else:
         return True
-
-
-@app.route('/receive/', methods=['GET', 'POST'])
-def receive():
-    return redirect(url_for('index'))
-
-
-@app.route('/receive/<fileID>', methods=['GET', 'POST'])
-def receiveFileID(fileID):
-    client = datastore.Client()
-    query = client.query(kind='fileDetails')
-    query = query.add_filter('fileCode', '=', fileID)
-    result = query.fetch()
-    resultLists = list(result)
-
-    if len(resultLists) == 0:
-        return 'No such file.', 400
-    else:
-        # client = storage.Client()
-        # bucket = client.get_bucket("cloudcomputing-270803.appspot.com")
-        # blob = bucket.blob(filename)
-        # with tempfile.NamedTemporaryFile() as temp:
-        #     blob.download_to_filename(temp.name)
-        #     return send_file(temp.name, attachment_filename=filename) 
-
-        global filePublicUrls
-        for key, value in resultLists[0].items():
-            if key == 'filePublicUrl':
-                filePublicUrls = value
-        return render_template('receive.html', post=True, filePublicUrl=filePublicUrls)
-
-
-if __name__ == '__main__':
-    # This is used when running locally only. When deploying to Google App
-    # Engine, a webserver process such as Gunicorn will serve the app. This
-    # can be configured by adding an `entrypoint` to app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True)
