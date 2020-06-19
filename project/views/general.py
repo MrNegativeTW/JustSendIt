@@ -27,7 +27,7 @@ def index():
         # Get uploaded file.
         uploaded_file = request.files.get('file')
         if not uploaded_file:
-            return redirect(url_for('index'))
+            return redirect(url_for('general.index'))
 
         # Generate md5 for file
         fileMD5 = hashlib.md5(uploaded_file.read()).hexdigest()
